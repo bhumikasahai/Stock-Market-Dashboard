@@ -1,0 +1,44 @@
+*{
+  margin: 0%;
+}
+body{
+  background-color: #f5f6fa;
+}
+.app{
+  display: flex;
+  justify-content: space-evenly;
+  padding: 10px;
+}
+.app_header > h1{
+  color: #fc3c3c;
+  font-size: 2rem;
+}
+.app_header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.app_left{
+  flex: 0.9;
+}
+.app_stats{
+  display: flex;
+  justify-content: space-between;
+}
+@media (max-width: 990px){
+  .app{
+    flex-direction: column;
+  }
+}
+.stock_chart {
+  background-color: white;
+  margin-top: 25px;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.stock_chart h2 {
+  margin-bottom: 20px;
+  color: #333;
+}
