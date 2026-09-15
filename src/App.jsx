@@ -1,9 +1,6 @@
 import { getStockHistory } from "./stockApi";
 import React, { useState, useEffect } from "react";
-import {
-  Autocomplete,
-  TextField
-} from "@mui/material";
+import { MenuItem, FormControl, Select } from "@mui/material";
 import LineGraph from "./LineGraph";
 import "./App.css";
 
@@ -187,20 +184,9 @@ function App() {
             highest: highestPrice.toFixed(2),
             lowest: lowestPrice.toFixed(2),
 
-            sma20:
-              sma20 !== null
-                ? sma20.toFixed(2)
-                : null,
-
-            rsi14:
-              rsi14 !== null
-                ? rsi14.toFixed(2)
-                : null,
-
-            momentum:
-              momentum !== null
-                ? momentum.toFixed(2)
-                : null,
+            sma20: sma20 !== null ? sma20.toFixed(2) : null,
+            rsi14: rsi14 !== null ? rsi14.toFixed(2) : null,
+            momentum: momentum !== null ? momentum.toFixed(2) : null,
           };
 
           console.log("STOCK DATA:", stockData);
