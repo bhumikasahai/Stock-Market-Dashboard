@@ -1,6 +1,9 @@
 import { getStockHistory } from "./stockApi";
 import React, { useState, useEffect } from "react";
-import { MenuItem, FormControl, Select } from "@mui/material";
+import {
+  Autocomplete,
+  TextField
+} from "@mui/material";
 import LineGraph from "./LineGraph";
 import "./App.css";
 
