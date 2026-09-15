@@ -18,13 +18,18 @@ function calculateSMA(prices, period) {
   return sum / period;
 }
 
+
 function calculateRSI(prices, period = 14) {
   if (prices.length <= period) return null;
 
   let gains = 0;
   let losses = 0;
 
-  for (let i = prices.length - period; i < prices.length; i++) {
+  for (
+    let i = prices.length - period;
+    i < prices.length;
+    i++
+  ) {
     const change = prices[i] - prices[i - 1];
 
     if (change > 0) {
@@ -34,23 +39,34 @@ function calculateRSI(prices, period = 14) {
     }
   }
 
-  if (losses === 0) return 100;
+  if (losses === 0) {
+    return 100;
+  }
 
   const averageGain = gains / period;
   const averageLoss = losses / period;
 
-  const relativeStrength = averageGain / averageLoss;
+  const relativeStrength =
+    averageGain / averageLoss;
 
   return 100 - 100 / (1 + relativeStrength);
 }
 
+
 function calculateMomentum(prices, period = 10) {
   if (prices.length <= period) return null;
 
-  const currentPrice = prices[prices.length - 1];
-  const previousPrice = prices[prices.length - 1 - period];
+  const currentPrice =
+    prices[prices.length - 1];
 
-  return ((currentPrice - previousPrice) / previousPrice) * 100;
+  const previousPrice =
+    prices[prices.length - 1 - period];
+
+  return (
+    ((currentPrice - previousPrice) /
+      previousPrice) *
+    100
+  );
 }
 
 function App() {
@@ -145,9 +161,10 @@ function App() {
             .map((item) => Number(item.close));
 
           const sma20 = calculateSMA(prices, 20);
-          const rsi14 = calculateRSI(prices, 14);
-          const momentum = calculateMomentum(prices, 10);
 
+          const rsi14 = calculateRSI(prices, 14);
+
+          const momentum = calculateMomentum(prices, 10);
           // Simple trend calculation
           let trend = "Neutral";
 
@@ -167,9 +184,20 @@ function App() {
             highest: highestPrice.toFixed(2),
             lowest: lowestPrice.toFixed(2),
 
-            sma20: sma20 !== null ? sma20.toFixed(2) : null,
-            rsi14: rsi14 !== null ? rsi14.toFixed(2) : null,
-            momentum: momentum !== null ? momentum.toFixed(2) : null,
+            sma20:
+              sma20 !== null
+                ? sma20.toFixed(2)
+                : null,
+
+            rsi14:
+              rsi14 !== null
+                ? rsi14.toFixed(2)
+                : null,
+
+            momentum:
+              momentum !== null
+                ? momentum.toFixed(2)
+                : null,
           };
 
           console.log("STOCK DATA:", stockData);
