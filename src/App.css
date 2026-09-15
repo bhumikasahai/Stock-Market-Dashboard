@@ -1,44 +1,631 @@
-*{
-  margin: 0%;
+/* =========================
+   GLOBAL RESET
+========================= */
+
+* {
+  box-sizing: border-box;
 }
-body{
-  background-color: #f5f6fa;
+
+html,
+body,
+#root {
+  margin: 0;
+  padding: 0;
+  min-height: 100%;
+  width: 100%;
+  background: #080c0a;
 }
-.app{
+
+body {
+  overflow-x: hidden;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =========================
+   GLOBAL DASHBOARD
+========================= */
+
+.app {
+  min-height: 100vh;
+  width: 100%;
+  background: #080c0a;
+  color: #ffffff;
+  padding: 24px 40px;
+  box-sizing: border-box;
+}
+
+.app_left {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+.app_header {
   display: flex;
-  justify-content: space-evenly;
-  padding: 10px;
-}
-.app_header > h1{
-  color: #fc3c3c;
-  font-size: 2rem;
-}
-.app_header{
-  display: flex;
-  justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
+  justify-content: space-between;
+  padding: 10px 0 32px;
 }
-.app_left{
-  flex: 0.9;
-}
-.app_stats{
+
+
+/* =========================
+   BRAND
+========================= */
+
+.brand {
   display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.brand_name {
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.8px;
+  color: #ffffff;
+}
+
+.brand_ai {
+  font-size: 14px;
+  font-weight: 700;
+  color: #00c853;
+  background: rgba(0, 200, 83, 0.1);
+  border: 1px solid rgba(0, 200, 83, 0.25);
+  padding: 4px 7px;
+  border-radius: 6px;
+}
+
+
+/* =========================
+   STOCK SELECTOR
+========================= */
+
+.stock_selector {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: #101613;
+  border: 1px solid #1d2821;
+  border-radius: 10px;
+  padding-left: 12px;
+}
+
+.search_icon {
+  color: #8b938d;
+  font-size: 23px;
+  line-height: 1;
+}
+
+.app_dropdown {
+  min-width: 145px;
+}
+
+
+/* Remove MUI default border */
+
+.app_dropdown .MuiOutlinedInput-notchedOutline {
+  border: none;
+}
+
+.app_dropdown .MuiSelect-select {
+  color: #ffffff;
+  font-weight: 500;
+  padding: 12px 35px 12px 5px;
+}
+
+.app_dropdown .MuiSvgIcon-root {
+  color: #8b938d;
+}
+
+
+
+/* =========================
+   STOCK HERO
+========================= */
+
+.stock_hero {
+  background: #101613;
+  border: 1px solid #1d2821;
+  border-radius: 16px;
+  padding: 28px 30px;
+  margin-bottom: 18px;
+}
+
+.stock_identity {
+  display: flex;
+  align-items: flex-start;
   justify-content: space-between;
 }
-@media (max-width: 990px){
-  .app{
-    flex-direction: column;
-  }
+
+.stock_symbol {
+  margin: 0 0 5px;
+  color: #00c853;
+  font-size: 16px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
 }
-.stock_chart {
-  background-color: white;
+
+.stock_name {
+  margin: 0;
+  color: #8b938d;
+  font-size: 16px;
+  font-weight: 400;
+}
+
+.watch_button {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #2a382f;
+  border-radius: 8px;
+  padding: 9px 14px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.watch_button:hover {
+  background: #162019;
+  border-color: #00c853;
+  color: #00c853;
+}
+
+.stock_price {
   margin-top: 25px;
-  padding: 20px;
-  border-radius: 10px;
+}
+
+.stock_price>span {
+  display: block;
+  color: #ffffff;
+  font-size: 42px;
+  font-weight: 600;
+  letter-spacing: -1.5px;
+}
+
+.stock_change {
+  margin-top: 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.stock_change.positive {
+  color: #00c853;
+}
+
+.stock_change.negative {
+  color: #ff4d4d;
+}
+
+
+/* =========================
+   STOCK STATISTICS
+========================= */
+
+.app_stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 18px;
+  margin-bottom: 24px;
+}
+
+
+/* =========================
+   PRICE CHART
+========================= */
+
+.stock_chart {
+  background: #101613;
+  border: 1px solid #1d2821;
+  border-radius: 16px;
+  padding: 28px 30px 25px;
+  margin-top: 10px;
+  box-sizing: border-box;
+}
+
+.chart_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.chart_label {
+  margin: 0 0 4px;
+  color: #69736d;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
 }
 
 .stock_chart h2 {
-  margin-bottom: 20px;
-  color: #333;
+  margin: 0;
+  color: #ffffff;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.chart_period {
+  display: flex;
+  gap: 5px;
+}
+
+.chart_period button {
+  background: transparent;
+  color: #69736d;
+  border: none;
+  border-radius: 7px;
+  padding: 7px 12px;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.chart_period button.active {
+  background: rgba(0, 200, 83, 0.12);
+  color: #00c853;
+}
+
+.chart_container {
+  position: relative;
+  height: 430px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.chart_loading {
+  color: #69736d;
+  padding: 40px 0;
+}
+
+
+/* =========================
+   TREND ANALYSIS
+========================= */
+
+.trend_section {
+  margin-top: 28px;
+}
+
+.section_heading {
+  margin-bottom: 16px;
+}
+
+.section_heading p {
+  margin: 0 0 5px;
+  color: #69736d;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1px;
+}
+
+.section_heading h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.trend_grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.trend_card {
+  background: #101613;
+  border: 1px solid #1d2821;
+  border-radius: 14px;
+  padding: 22px;
+  min-height: 125px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.trend_card:hover {
+  border-color: #2b3b31;
+  transform: translateY(-2px);
+}
+
+.trend_card_label {
+  display: block;
+  color: #69736d;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.trend_card h3 {
+  margin: 0 0 7px;
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.trend_card p {
+  margin: 0;
+  color: #69736d;
+  font-size: 12px;
+}
+
+.trend_card h3.positive {
+  color: #00c853;
+}
+
+.trend_card h3.negative {
+  color: #ff4d4d;
+}
+
+.trend_card h3.neutral {
+  color: #ffffff;
+}
+
+/* =========================
+   TECHNICAL INDICATORS
+========================= */
+
+.technical_section {
+  margin-top: 35px;
+}
+
+.technical_grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+}
+
+.technical_card {
+  background: #101613;
+  border: 1px solid #1d2821;
+  border-radius: 14px;
+  padding: 22px;
+  min-height: 125px;
+  transition: border-color 0.2s ease, transform 0.2s ease;
+}
+
+.technical_card:hover {
+  border-color: #2b3b31;
+  transform: translateY(-2px);
+}
+
+.technical_card_label {
+  display: block;
+  color: #69736d;
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  margin-bottom: 14px;
+}
+
+.technical_card h3 {
+  margin: 0 0 7px;
+  color: #ffffff;
+  font-size: 23px;
+  font-weight: 600;
+}
+
+.technical_card p {
+  margin: 0;
+  color: #69736d;
+  font-size: 12px;
+}
+
+.technical_card h3.positive {
+  color: #00c853;
+}
+
+.technical_card h3.negative {
+  color: #ff4d4d;
+}
+
+/* =========================
+   TABLET
+========================= */
+
+@media (max-width: 900px) {
+  .app {
+    padding: 20px 25px;
+  }
+
+  .app_stats {
+    grid-template-columns: 1fr;
+  }
+
+  .trend_grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+  .app {
+    padding: 16px;
+  }
+
+  .app_header {
+    padding-bottom: 24px;
+    gap: 15px;
+  }
+
+  .brand_name {
+    font-size: 23px;
+  }
+
+  .brand_ai {
+    font-size: 12px;
+    padding: 3px 6px;
+  }
+
+  .stock_selector {
+    max-width: 150px;
+  }
+
+  .app_dropdown {
+    min-width: 110px;
+  }
+
+  .stock_chart {
+    padding: 18px;
+    border-radius: 12px;
+  }
+
+  .stock_chart h2 {
+    font-size: 18px;
+  }
+
+  .stock_hero {
+    padding: 20px;
+  }
+
+  .stock_identity {
+    gap: 15px;
+  }
+
+  .stock_name {
+    font-size: 14px;
+    line-height: 1.4;
+  }
+
+  .stock_price {
+    margin-top: 20px;
+  }
+
+  .stock_price>span {
+    font-size: 34px;
+  }
+
+  .watch_button {
+    padding: 8px 10px;
+  }
+
+  .stock_chart {
+    padding: 20px 16px;
+  }
+
+  .stock_chart h2 {
+    font-size: 20px;
+  }
+
+  .chart_container {
+    height: 300px;
+  }
+
+  .chart_period button {
+    padding: 6px 9px;
+  }
+  .trend_grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* =========================
+   WATCHLIST
+========================= */
+
+.watchlist_section {
+  margin-top: 35px;
+  padding-bottom: 40px;
+}
+
+.empty_watchlist {
+  background: #101613;
+  border: 1px solid #1d2821;
+  border-radius: 14px;
+  padding: 35px;
+  text-align: center;
+}
+
+.empty_watchlist span {
+  display: block;
+  color: #69736d;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+.empty_watchlist p {
+  margin: 0 0 6px;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.empty_watchlist small {
+  color: #69736d;
+  font-size: 12px;
+}
+
+.watchlist_list {
+  display: flex;
+  flex-direction: column;
+  background: #101613;
+  border: 1px solid #1d2821;
+  border-radius: 14px;
+  overflow: hidden;
+}
+
+.watchlist_item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 22px;
+  border-bottom: 1px solid #1d2821;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+.watchlist_item:last-child {
+  border-bottom: none;
+}
+
+.watchlist_item:hover {
+  background: #141c17;
+}
+
+.watchlist_stock {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.watchlist_stock strong {
+  color: #ffffff;
+  font-size: 15px;
+}
+
+.watchlist_stock span {
+  color: #69736d;
+  font-size: 12px;
+}
+
+.watchlist_action {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.watchlist_arrow {
+  color: #00c853;
+  font-size: 18px;
+}
+
+.watchlist_action button {
+  width: 28px;
+  height: 28px;
+  background: transparent;
+  border: none;
+  color: #69736d;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.watchlist_action button:hover {
+  color: #ff4d4d;
 }

@@ -1,26 +1,18 @@
-import { Card, CardContent, Typography } from '@mui/material'
-import React from 'react'
-import './InfoBox.css';
+import React from "react";
+import "./InfoBox.css";
 
-function InfoBox({title, cases, total, ...props}) {
+function InfoBox({ title, value, subtitle, positive }) {
   return (
-    <Card onClick={props.onClick} className='InfoBox'>
-        <CardContent>
-            {/* title i.e. coronavirus cases */}
-            <Typography className='InfoBox_title' color='textSecondary'>
-                {title}
-            </Typography>
+    <div className="InfoBox">
+      <p className="InfoBox_title">{title}</p>
 
-            {/* +120k no of cases */}
-            <h2 className='InfoBox_cases'>{cases}</h2>
+      <h2 className="InfoBox_value">{value}</h2>
 
-            {/* 1.2M Total */}
-            <Typography className='InfoBox_total' color='textSecondary'>
-                {total} Total
-            </Typography>
-        </CardContent>
-    </Card>
-  )
+      <p className={`InfoBox_subtitle ${positive === true ? "positive" : ""} ${positive === false ? "negative" : ""}`}>
+        {subtitle}
+      </p>
+    </div>
+  );
 }
 
-export default InfoBox
+export default InfoBox;
