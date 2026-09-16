@@ -280,6 +280,16 @@ function App() {
           removeFromWatchlist={removeFromWatchlist}
         />
 
+
+        {/* =========================
+          AIEXPERT
+        ========================= */}
+
+        <AIExpert
+          selectedStock={selectedStock}
+          stockInfo={stockInfo}
+        />
+
       </div>
 
     </div>
