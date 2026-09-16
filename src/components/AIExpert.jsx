@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 
-function AIExpert({ selectedStock, stockInfo }) {
+function AIExpert({
+  selectedStock,
+  aiExpertOpen,
+  setAiExpertOpen
+}) {
   const [message, setMessage] = useState("");
 
   const suggestedQuestions = [
     "What is the current trend?",
     "Explain the technical indicators",
-    "What are the recent price movements?",
+    "What are the recent price movements?"
   ];
 
   const handleSubmit = (event) => {
@@ -19,40 +23,73 @@ function AIExpert({ selectedStock, stockInfo }) {
     setMessage("");
   };
 
+  if (!aiExpertOpen) {
+    return null;
+  }
+
   return (
-    <section className="ai_expert_section">
+    <>
+      {/* BACKDROP */}
 
-      <div className="section_heading">
-        <p>AI ANALYSIS</p>
-        <h2>AI Stock Expert</h2>
-      </div>
+      <div
+        className="ai_expert_backdrop"
+        onClick={() => setAiExpertOpen(false)}
+      ></div>
 
-      <div className="ai_expert_card">
 
-        {/* AI HEADER */}
+      {/* AI PANEL */}
 
-        <div className="ai_expert_header">
+      <aside className="ai_expert_panel">
 
-          <div>
-            <span className="ai_status_dot"></span>
+        {/* HEADER */}
 
-            <strong>
-              StockTrend AI Expert
-            </strong>
+        <div className="ai_panel_header">
 
-            <p>
-              Ask questions about {selectedStock}
-            </p>
+          <div className="ai_panel_title">
+
+            <div className="ai_panel_icon">
+              ✦
+            </div>
+
+            <div>
+              <strong>
+                AI Stock Expert
+              </strong>
+
+              <p>
+                StockTrend AI
+              </p>
+            </div>
+
           </div>
 
-          <span className="ai_stock_badge">
-            {selectedStock}
-          </span>
+
+          <button
+            className="ai_close_button"
+            onClick={() => setAiExpertOpen(false)}
+          >
+            ×
+          </button>
 
         </div>
 
 
-        {/* CHAT AREA */}
+        {/* STOCK */}
+
+        <div className="ai_current_stock">
+
+          <span>
+            ANALYZING
+          </span>
+
+          <strong>
+            {selectedStock}
+          </strong>
+
+        </div>
+
+
+        {/* CHAT */}
 
         <div className="ai_chat_area">
 
@@ -69,9 +106,10 @@ function AIExpert({ selectedStock, stockInfo }) {
               </strong>
 
               <p>
-                Hello! I can help you understand the
-                price trend, technical indicators and
-                recent market data for {selectedStock}.
+                Hello! I can help you understand
+                the price trend, technical indicators
+                and recent market data for{" "}
+                {selectedStock}.
               </p>
 
             </div>
@@ -79,7 +117,7 @@ function AIExpert({ selectedStock, stockInfo }) {
           </div>
 
 
-          {/* SUGGESTED QUESTIONS */}
+          {/* SUGGESTIONS */}
 
           <div className="ai_suggestions">
 
@@ -89,18 +127,20 @@ function AIExpert({ selectedStock, stockInfo }) {
 
             <div className="ai_suggestion_list">
 
-              {suggestedQuestions.map((question) => (
+              {suggestedQuestions.map(
+                (question) => (
 
-                <button
-                  key={question}
-                  onClick={() =>
-                    setMessage(question)
-                  }
-                >
-                  {question}
-                </button>
+                  <button
+                    key={question}
+                    onClick={() =>
+                      setMessage(question)
+                    }
+                  >
+                    {question}
+                  </button>
 
-              ))}
+                )
+              )}
 
             </div>
 
@@ -134,9 +174,8 @@ function AIExpert({ selectedStock, stockInfo }) {
 
         </form>
 
-      </div>
-
-    </section>
+      </aside>
+    </>
   );
 }
 

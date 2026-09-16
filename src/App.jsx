@@ -76,6 +76,7 @@ function calculateMomentum(prices, period = 10) {
 
 function App() {
   const [selectedStock, setSelectedStock] = useState("IBM");
+  const [aiExpertOpen, setAiExpertOpen] = useState(false);
   const [stockInfo, setStockInfo] = useState({});
   const [stockHistory, setStockHistory] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -225,6 +226,7 @@ function App() {
         <Header
           selectedStock={selectedStock}
           setSelectedStock={setSelectedStock}
+          setAiExpertOpen={setAiExpertOpen}
         />
 
 
@@ -282,12 +284,14 @@ function App() {
 
 
         {/* =========================
-          AIEXPERT
+          WATCHLIST
         ========================= */}
 
+        
         <AIExpert
           selectedStock={selectedStock}
-          stockInfo={stockInfo}
+          aiExpertOpen={aiExpertOpen}
+          setAiExpertOpen={setAiExpertOpen}
         />
 
       </div>

@@ -6,7 +6,8 @@ import {
 
 function Header({
   selectedStock,
-  setSelectedStock
+  setSelectedStock,
+  setAiExpertOpen
 }) {
 
   const stocks = [
@@ -57,74 +58,93 @@ function Header({
       </div>
 
 
-      {/* STOCK SEARCH */}
+      {/* RIGHT SIDE */}
 
-      <div className="stock_selector">
+      <div className="header_right">
 
-        <span className="search_icon">
-          ⌕
-        </span>
+        {/* STOCK SEARCH */}
 
-        <Autocomplete
-          className="app_search"
-          options={stocks}
-          value={selectedOption}
+        <div className="stock_selector">
 
-          onChange={(event, newValue) => {
+          <span className="search_icon">
+            ⌕
+          </span>
 
-            if (newValue) {
-              setSelectedStock(
-                newValue.symbol
-              );
+          <Autocomplete
+            className="app_search"
+            options={stocks}
+            value={selectedOption}
+
+            onChange={(event, newValue) => {
+
+              if (newValue) {
+                setSelectedStock(
+                  newValue.symbol
+                );
+              }
+
+            }}
+
+            getOptionLabel={(option) =>
+              `${option.symbol} — ${option.name}`
             }
 
-          }}
+            isOptionEqualToValue={
+              (option, value) =>
+                option.symbol === value.symbol
+            }
 
-          getOptionLabel={(option) =>
-            `${option.symbol} — ${option.name}`
+            renderOption={(
+              props,
+              option
+            ) => (
+
+              <li
+                {...props}
+                key={option.symbol}
+              >
+
+                <div className="search_option">
+
+                  <strong>
+                    {option.symbol}
+                  </strong>
+
+                  <span>
+                    {option.name}
+                  </span>
+
+                </div>
+
+              </li>
+
+            )}
+
+            renderInput={(params) => (
+
+              <TextField
+                {...params}
+                placeholder="Search stocks..."
+              />
+
+            )}
+
+          />
+
+        </div>
+
+
+        {/* AI EXPERT BUTTON */}
+
+        <button
+          className="ai_expert_button"
+          onClick={() =>
+            setAiExpertOpen(true)
           }
-
-          isOptionEqualToValue={
-            (option, value) =>
-              option.symbol === value.symbol
-          }
-
-          renderOption={(
-            props,
-            option
-          ) => (
-
-            <li
-              {...props}
-              key={option.symbol}
-            >
-
-              <div className="search_option">
-
-                <strong>
-                  {option.symbol}
-                </strong>
-
-                <span>
-                  {option.name}
-                </span>
-
-              </div>
-
-            </li>
-
-          )}
-
-          renderInput={(params) => (
-
-            <TextField
-              {...params}
-              placeholder="Search stocks..."
-            />
-
-          )}
-
-        />
+        >
+          <span>✦</span>
+          AI Expert
+        </button>
 
       </div>
 
