@@ -1,6 +1,9 @@
 import { getStockHistory } from "./stockApi";
 import React, { useState, useEffect } from "react";
-import { MenuItem, FormControl, Select } from "@mui/material";
+import Header from "./components/Header";
+import StockHero from "./components/StockHero";
+import TrendAnalysis from "./components/TrendAnalysis";
+import TechnicalIndicators from "./components/TechnicalIndicators";
 import LineGraph from "./LineGraph";
 import "./App.css";
 
@@ -214,147 +217,25 @@ function App() {
       <div className="app_left">
 
         {/* =========================
-            HEADER
+          HEADER
         ========================= */}
 
-        <div className="app_header">
-
-          <div className="brand">
-            <span className="brand_name">
-              StockTrend
-            </span>
-
-            <span className="brand_ai">
-              AI
-            </span>
-          </div>
-
-
-          <div className="stock_selector">
-
-            <span className="search_icon">
-              ⌕
-            </span>
-
-            <FormControl className="app_dropdown">
-
-              <Select
-                value={selectedStock}
-                onChange={(event) =>
-                  setSelectedStock(event.target.value)
-                }
-                displayEmpty
-              >
-
-                <MenuItem value="IBM">
-                  IBM
-                </MenuItem>
-
-                <MenuItem value="AAPL">
-                  Apple
-                </MenuItem>
-
-                <MenuItem value="MSFT">
-                  Microsoft
-                </MenuItem>
-
-                <MenuItem value="GOOGL">
-                  Google
-                </MenuItem>
-
-                <MenuItem value="AMZN">
-                  Amazon
-                </MenuItem>
-
-              </Select>
-
-            </FormControl>
-
-          </div>
-
-        </div>
+        <Header
+          selectedStock={selectedStock}
+          setSelectedStock={setSelectedStock}
+        />
 
 
         {/* =========================
-            STOCK HERO
+          STOCK HERO
         ========================= */}
 
-        <div className="stock_hero">
-
-          <div className="stock_identity">
-
-            <div>
-
-              <p className="stock_symbol">
-                {selectedStock}
-              </p>
-
-              <h2 className="stock_name">
-
-                {selectedStock === "IBM"
-                  ? "International Business Machines"
-                  : selectedStock === "AAPL"
-                    ? "Apple Inc."
-                    : selectedStock === "MSFT"
-                      ? "Microsoft Corporation"
-                      : selectedStock === "GOOGL"
-                        ? "Alphabet Inc."
-                        : "Amazon.com Inc."}
-
-              </h2>
-
-            </div>
-
-
-            <button
-              className="watch_button"
-              onClick={addToWatchlist}
-            >
-              {watchlist.includes(selectedStock)
-                ? "★ Added"
-                : "☆ Watchlist"}
-            </button>
-
-          </div>
-
-
-          <div className="stock_price">
-
-            <span>
-              {stockInfo?.close
-                ? `$${stockInfo.close}`
-                : "Loading..."}
-            </span>
-
-
-            <div
-              className={`stock_change ${stockInfo?.change &&
-                Number(stockInfo.change) >= 0
-                ? "positive"
-                : "negative"
-                }`}
-            >
-
-              {stockInfo?.change
-                ? `${Number(stockInfo.change) >= 0
-                  ? "+"
-                  : ""
-                }$${stockInfo.change}`
-                : ""}
-
-
-              {stockInfo?.percent_change
-                ? ` (${Number(stockInfo.percent_change) >= 0
-                  ? "+"
-                  : ""
-                }${stockInfo.percent_change}%)`
-                : ""}
-
-            </div>
-
-          </div>
-
-        </div>
+        <StockHero
+          selectedStock={selectedStock}
+          stockInfo={stockInfo}
+          watchlist={watchlist}
+          addToWatchlist={addToWatchlist}
+        />
 
 
         {/* =========================
@@ -401,128 +282,10 @@ function App() {
             TREND ANALYSIS
         ========================= */}
 
-        <div className="trend_section">
-
-          <div className="section_heading">
-
-            <p>
-              MARKET INSIGHT
-            </p>
-
-            <h2>
-              Trend Analysis
-            </h2>
-
-          </div>
-
-
-          <div className="trend_grid">
-
-
-            {/* TREND */}
-
-            <div className="trend_card">
-
-              <span className="trend_card_label">
-                TREND
-              </span>
-
-              <h3
-                className={
-                  stockInfo?.trend === "Bullish"
-                    ? "positive"
-                    : stockInfo?.trend === "Bearish"
-                      ? "negative"
-                      : "neutral"
-                }
-              >
-                {loading
-                  ? "Loading..."
-                  : stockInfo?.trend || "Neutral"}
-              </h3>
-
-              <p>
-                Based on 30-day movement
-              </p>
-
-            </div>
-
-
-            {/* VOLUME */}
-
-            <div className="trend_card">
-
-              <span className="trend_card_label">
-                CURRENT VOLUME
-              </span>
-
-              <h3>
-
-                {stockInfo?.volume
-                  ? Number(
-                    stockInfo.volume
-                  ).toLocaleString()
-                  : "Loading..."}
-
-              </h3>
-
-              <p>
-                Shares traded
-              </p>
-
-            </div>
-
-
-            {/* 30 DAY HIGH */}
-
-            <div className="trend_card">
-
-              <span className="trend_card_label">
-                30D HIGH
-              </span>
-
-              <h3>
-
-                {stockInfo?.highest
-                  ? `$${stockInfo.highest}`
-                  : "Loading..."}
-
-              </h3>
-
-              <p>
-                Highest recorded price
-              </p>
-
-            </div>
-
-
-            {/* 30 DAY LOW */}
-
-            <div className="trend_card">
-
-              <span className="trend_card_label">
-                30D LOW
-              </span>
-
-              <h3>
-
-                {stockInfo?.lowest
-                  ? `$${stockInfo.lowest}`
-                  : "Loading..."}
-
-              </h3>
-
-              <p>
-                Lowest recorded price
-              </p>
-
-            </div>
-
-
-          </div>
-
-        </div>
-
+        <TrendAnalysis
+          stockInfo={stockInfo}
+          loading={loading}
+        />
 
 
 
