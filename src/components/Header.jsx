@@ -1,14 +1,44 @@
 import React from "react";
 import {
-  MenuItem,
-  FormControl,
-  Select
+  Autocomplete,
+  TextField
 } from "@mui/material";
 
 function Header({
   selectedStock,
   setSelectedStock
 }) {
+
+  const stocks = [
+    {
+      symbol: "IBM",
+      name: "International Business Machines"
+    },
+    {
+      symbol: "AAPL",
+      name: "Apple Inc."
+    },
+    {
+      symbol: "MSFT",
+      name: "Microsoft Corporation"
+    },
+    {
+      symbol: "GOOGL",
+      name: "Alphabet Inc."
+    },
+    {
+      symbol: "AMZN",
+      name: "Amazon.com Inc."
+    }
+  ];
+
+  const selectedOption =
+    stocks.find(
+      (stock) =>
+        stock.symbol === selectedStock
+    ) || null;
+
+
   return (
     <div className="app_header">
 
@@ -27,7 +57,7 @@ function Header({
       </div>
 
 
-      {/* STOCK SELECTOR */}
+      {/* STOCK SEARCH */}
 
       <div className="stock_selector">
 
@@ -35,39 +65,66 @@ function Header({
           ⌕
         </span>
 
-        <FormControl className="app_dropdown">
+        <Autocomplete
+          className="app_search"
+          options={stocks}
+          value={selectedOption}
 
-          <Select
-            value={selectedStock}
-            onChange={(event) =>
-              setSelectedStock(event.target.value)
+          onChange={(event, newValue) => {
+
+            if (newValue) {
+              setSelectedStock(
+                newValue.symbol
+              );
             }
-            displayEmpty
-          >
 
-            <MenuItem value="IBM">
-              IBM
-            </MenuItem>
+          }}
 
-            <MenuItem value="AAPL">
-              Apple
-            </MenuItem>
+          getOptionLabel={(option) =>
+            `${option.symbol} — ${option.name}`
+          }
 
-            <MenuItem value="MSFT">
-              Microsoft
-            </MenuItem>
+          isOptionEqualToValue={
+            (option, value) =>
+              option.symbol === value.symbol
+          }
 
-            <MenuItem value="GOOGL">
-              Google
-            </MenuItem>
+          renderOption={(
+            props,
+            option
+          ) => (
 
-            <MenuItem value="AMZN">
-              Amazon
-            </MenuItem>
+            <li
+              {...props}
+              key={option.symbol}
+            >
 
-          </Select>
+              <div className="search_option">
 
-        </FormControl>
+                <strong>
+                  {option.symbol}
+                </strong>
+
+                <span>
+                  {option.name}
+                </span>
+
+              </div>
+
+            </li>
+
+          )}
+
+          renderInput={(params) => (
+
+            <TextField
+              {...params}
+              placeholder="Search stocks..."
+            />
+
+          )}
+
+        />
 
       </div>
 

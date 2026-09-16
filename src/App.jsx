@@ -4,7 +4,9 @@ import Header from "./components/Header";
 import StockHero from "./components/StockHero";
 import TrendAnalysis from "./components/TrendAnalysis";
 import TechnicalIndicators from "./components/TechnicalIndicators";
-import LineGraph from "./LineGraph";
+import PriceChart from "./components/PriceChart";
+import Watchlist from "./components/Watchlist";
+import AIExpert from "./components/AIExpert";
 import "./App.css";
 
 
@@ -242,40 +244,10 @@ function App() {
             PRICE CHART
         ========================= */}
 
-        <div className="stock_chart">
-
-          <div className="chart_header">
-
-            <div>
-
-              <p className="chart_label">
-                PRICE TREND
-              </p>
-
-              <h2>
-                {selectedStock}
-              </h2>
-
-            </div>
-
-
-            <div className="chart_period">
-
-              <button className="active">
-                1M
-              </button>
-
-            </div>
-
-          </div>
-
-
-          <LineGraph
-            stockHistory={stockHistory}
-            symbol={selectedStock}
-          />
-
-        </div>
+        <PriceChart
+          stockHistory={stockHistory}
+          selectedStock={selectedStock}
+        />
 
 
         {/* =========================
@@ -290,203 +262,23 @@ function App() {
 
 
         {/* =========================
-            TECHNICAL INDICATORS
+          TECHNICAL INDICATORS
         ========================= */}
 
-        <div className="technical_section">
-
-          <div className="section_heading">
-
-            <p>
-              TECHNICAL DATA
-            </p>
-
-            <h2>
-              Technical Indicators
-            </h2>
-
-          </div>
-
-
-          <div className="technical_grid">
-
-
-            {/* SMA 20 */}
-
-            <div className="technical_card">
-
-              <span className="technical_card_label">
-                SMA 20
-              </span>
-
-              <h3>
-                {stockInfo?.sma20
-                  ? `$${stockInfo.sma20}`
-                  : "Loading..."}
-              </h3>
-
-              <p>
-                20-day moving average
-              </p>
-
-            </div>
-
-
-            {/* RSI 14 */}
-
-            <div className="technical_card">
-
-              <span className="technical_card_label">
-                RSI 14
-              </span>
-
-              <h3>
-                {stockInfo?.rsi14
-                  ? stockInfo.rsi14
-                  : "Loading..."}
-              </h3>
-
-              <p>
-                Relative strength index
-              </p>
-
-            </div>
-
-
-            {/* MOMENTUM */}
-
-            <div className="technical_card">
-
-              <span className="technical_card_label">
-                MOMENTUM
-              </span>
-
-              <h3
-                className={
-                  stockInfo?.momentum &&
-                    Number(stockInfo.momentum) >= 0
-                    ? "positive"
-                    : "negative"
-                }
-              >
-                {stockInfo?.momentum
-                  ? `${Number(stockInfo.momentum) >= 0
-                    ? "+"
-                    : ""
-                  }${stockInfo.momentum}%`
-                  : "Loading..."}
-              </h3>
-
-              <p>
-                10-day price momentum
-              </p>
-
-            </div>
-
-
-          </div>
-
-        </div>
+        <TechnicalIndicators
+          stockInfo={stockInfo}
+        />
 
 
         {/* =========================
-            WATCHLIST
+          WATCHLIST
         ========================= */}
 
-
-
-
-        <div className="watchlist_section">
-
-          <div className="section_heading">
-
-            <p>
-              YOUR STOCKS
-            </p>
-
-            <h2>
-              Watchlist
-            </h2>
-
-          </div>
-
-
-          {watchlist.length === 0 ? (
-
-            <div className="empty_watchlist">
-              <span>☆</span>
-
-              <p>
-                Your watchlist is empty
-              </p>
-
-              <small>
-                Add stocks you're interested in
-                tracking.
-              </small>
-            </div>
-
-          ) : (
-
-            <div className="watchlist_list">
-
-              {watchlist.map((symbol) => (
-
-                <div
-                  className="watchlist_item"
-                  key={symbol}
-                  onClick={() =>
-                    setSelectedStock(symbol)
-                  }
-                >
-
-                  <div className="watchlist_stock">
-
-                    <strong>
-                      {symbol}
-                    </strong>
-
-                    <span>
-                      {symbol === "IBM"
-                        ? "International Business Machines"
-                        : symbol === "AAPL"
-                          ? "Apple Inc."
-                          : symbol === "MSFT"
-                            ? "Microsoft Corporation"
-                            : symbol === "GOOGL"
-                              ? "Alphabet Inc."
-                              : "Amazon.com Inc."}
-                    </span>
-
-                  </div>
-
-
-                  <div className="watchlist_action">
-
-                    <span className="watchlist_arrow">
-                      →
-                    </span>
-
-                    <button
-                      onClick={(event) => {
-                        event.stopPropagation();
-                        removeFromWatchlist(symbol);
-                      }}
-                    >
-                      ×
-                    </button>
-
-                  </div>
-
-                </div>
-
-              ))}
-
-            </div>
-
-          )}
-
-        </div>
+        <Watchlist
+          watchlist={watchlist}
+          setSelectedStock={setSelectedStock}
+          removeFromWatchlist={removeFromWatchlist}
+        />
 
       </div>
 

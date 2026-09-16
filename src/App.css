@@ -101,25 +101,67 @@ body {
   line-height: 1;
 }
 
-.app_dropdown {
-  min-width: 145px;
+/* STOCK SEARCH */
+
+.app_search {
+  width: 300px;
 }
 
+.app_search .MuiOutlinedInput-root {
+  color: #ffffff;
+  padding: 2px 8px;
+}
 
-/* Remove MUI default border */
-
-.app_dropdown .MuiOutlinedInput-notchedOutline {
+.app_search .MuiOutlinedInput-notchedOutline {
   border: none;
 }
 
-.app_dropdown .MuiSelect-select {
+.app_search .MuiInputBase-input {
   color: #ffffff;
-  font-weight: 500;
-  padding: 12px 35px 12px 5px;
+  font-size: 14px;
 }
 
-.app_dropdown .MuiSvgIcon-root {
-  color: #8b938d;
+.app_search .MuiInputBase-input::placeholder {
+  color: #69736d;
+  opacity: 1;
+}
+
+.app_search .MuiAutocomplete-popupIndicator {
+  color: #69736d;
+}
+
+.app_search .MuiAutocomplete-clearIndicator {
+  color: #69736d;
+}
+
+.search_option {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+}
+
+.search_option strong {
+  color: #ffffff;
+  font-size: 14px;
+}
+
+.search_option span {
+  color: #69736d;
+  font-size: 12px;
+}
+
+.MuiAutocomplete-paper {
+  background: #101613 !important;
+  color: #ffffff;
+  border: 1px solid #1d2821;
+}
+
+.MuiAutocomplete-option {
+  color: #ffffff !important;
+}
+
+.MuiAutocomplete-option:hover {
+  background: #141c17 !important;
 }
 
 
@@ -628,4 +670,201 @@ body {
 
 .watchlist_action button:hover {
   color: #ff4d4d;
+}
+
+/* =========================
+   AI STOCK EXPERT
+========================= */
+
+.ai_expert_section {
+  margin-top: 35px;
+  padding-bottom: 40px;
+}
+
+.ai_expert_card {
+  background: #101613;
+  border: 1px solid #1d2821;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+/* AI HEADER */
+
+.ai_expert_header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  border-bottom: 1px solid #1d2821;
+}
+
+.ai_expert_header > div {
+  position: relative;
+  padding-left: 16px;
+}
+
+.ai_status_dot {
+  position: absolute;
+  left: 0;
+  top: 5px;
+  width: 8px;
+  height: 8px;
+  background: #00c853;
+  border-radius: 50%;
+}
+
+.ai_expert_header strong {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.ai_expert_header p {
+  margin: 5px 0 0;
+  color: #69736d;
+  font-size: 12px;
+}
+
+.ai_stock_badge {
+  color: #00c853;
+  background: rgba(0, 200, 83, 0.1);
+  border: 1px solid rgba(0, 200, 83, 0.2);
+  padding: 6px 10px;
+  border-radius: 7px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* CHAT AREA */
+
+.ai_chat_area {
+  min-height: 300px;
+  padding: 25px;
+}
+
+.ai_message {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  max-width: 750px;
+}
+
+.ai_avatar {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 200, 83, 0.1);
+  border: 1px solid rgba(0, 200, 83, 0.2);
+  border-radius: 9px;
+  color: #00c853;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ai_message_content {
+  background: #141c17;
+  border: 1px solid #1d2821;
+  border-radius: 12px;
+  padding: 14px 16px;
+}
+
+.ai_message_content strong {
+  color: #ffffff;
+  font-size: 13px;
+}
+
+.ai_message_content p {
+  margin: 7px 0 0;
+  color: #8b938d;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+/* SUGGESTIONS */
+
+.ai_suggestions {
+  margin-top: 25px;
+  margin-left: 46px;
+}
+
+.ai_suggestions > span {
+  display: block;
+  margin-bottom: 9px;
+  color: #69736d;
+  font-size: 11px;
+}
+
+.ai_suggestion_list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.ai_suggestion_list button {
+  background: transparent;
+  border: 1px solid #26342b;
+  border-radius: 8px;
+  padding: 8px 12px;
+  color: #8b938d;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ai_suggestion_list button:hover {
+  background: #162019;
+  border-color: #00c853;
+  color: #00c853;
+}
+
+/* INPUT */
+
+.ai_input_area {
+  display: flex;
+  gap: 10px;
+  padding: 18px 20px;
+  border-top: 1px solid #1d2821;
+}
+
+.ai_input_area input {
+  flex: 1;
+  min-width: 0;
+  background: #080c0a;
+  border: 1px solid #26342b;
+  border-radius: 9px;
+  padding: 12px 14px;
+  outline: none;
+  color: #ffffff;
+  font-size: 13px;
+}
+
+.ai_input_area input::placeholder {
+  color: #69736d;
+}
+
+.ai_input_area input:focus {
+  border-color: #00c853;
+}
+
+.ai_input_area button {
+  background: #00c853;
+  border: none;
+  border-radius: 9px;
+  padding: 0 20px;
+  color: #061008;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.ai_input_area button:hover {
+  background: #00b84d;
+}
+
+.ai_input_area button:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
 }
