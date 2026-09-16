@@ -284,12 +284,13 @@ function App() {
 
 
         {/* =========================
-          WATCHLIST
+          AI EXPERT
         ========================= */}
 
-        
+
         <AIExpert
           selectedStock={selectedStock}
+          stockInfo={stockInfo}
           aiExpertOpen={aiExpertOpen}
           setAiExpertOpen={setAiExpertOpen}
         />

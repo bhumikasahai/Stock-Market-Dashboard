@@ -101,6 +101,7 @@ body {
   line-height: 1;
 }
 
+
 /* STOCK SEARCH */
 
 .app_search {
@@ -164,7 +165,10 @@ body {
   background: #141c17 !important;
 }
 
-/* HEADER RIGHT SIDE */
+
+/* =========================
+   HEADER RIGHT SIDE
+========================= */
 
 .header_right {
   display: flex;
@@ -172,7 +176,10 @@ body {
   gap: 12px;
 }
 
-/* AI EXPERT BUTTON */
+
+/* =========================
+   AI EXPERT BUTTON
+========================= */
 
 .ai_expert_button {
   display: flex;
@@ -197,7 +204,6 @@ body {
   background: rgba(0, 200, 83, 0.15);
   border-color: #00c853;
 }
-
 
 
 /* =========================
@@ -254,7 +260,7 @@ body {
   margin-top: 25px;
 }
 
-.stock_price>span {
+.stock_price > span {
   display: block;
   color: #ffffff;
   font-size: 42px;
@@ -439,6 +445,7 @@ body {
   color: #ffffff;
 }
 
+
 /* =========================
    TECHNICAL INDICATORS
 ========================= */
@@ -497,6 +504,7 @@ body {
   color: #ff4d4d;
 }
 
+
 /* =========================
    TABLET
 ========================= */
@@ -513,7 +521,6 @@ body {
   .trend_grid {
     grid-template-columns: repeat(2, 1fr);
   }
-
 }
 
 
@@ -544,8 +551,8 @@ body {
     max-width: 150px;
   }
 
-  .app_dropdown {
-    min-width: 110px;
+  .app_search {
+    width: 100%;
   }
 
   .stock_chart {
@@ -574,7 +581,7 @@ body {
     margin-top: 20px;
   }
 
-  .stock_price>span {
+  .stock_price > span {
     font-size: 34px;
   }
 
@@ -597,10 +604,12 @@ body {
   .chart_period button {
     padding: 6px 9px;
   }
+
   .trend_grid {
     grid-template-columns: 1fr;
   }
 }
+
 
 /* =========================
    WATCHLIST
@@ -706,6 +715,7 @@ body {
   color: #ff4d4d;
 }
 
+
 /* =========================
    AI EXPERT SIDE PANEL
 ========================= */
@@ -713,16 +723,23 @@ body {
 .ai_expert_backdrop {
   position: fixed;
   inset: 0;
+
   background: rgba(0, 0, 0, 0.45);
+
   z-index: 998;
 }
 
-/* PANEL */
+
+/* =========================
+   AI PANEL
+========================= */
 
 .ai_expert_panel {
   position: fixed;
+
   top: 0;
   right: 0;
+
   width: 420px;
   max-width: 90vw;
   height: 100vh;
@@ -731,19 +748,28 @@ body {
   flex-direction: column;
 
   background: #0d120f;
+
   border-left: 1px solid #26342b;
 
   z-index: 999;
 
   box-shadow: -12px 0 40px rgba(0, 0, 0, 0.35);
+
+  /* Prevent horizontal scrolling */
+  overflow: hidden;
 }
 
-/* HEADER */
+
+/* =========================
+   AI PANEL HEADER
+========================= */
 
 .ai_panel_header {
   display: flex;
   align-items: center;
   justify-content: space-between;
+
+  flex-shrink: 0;
 
   padding: 20px 22px;
 
@@ -753,6 +779,7 @@ body {
 .ai_panel_title {
   display: flex;
   align-items: center;
+
   gap: 12px;
 }
 
@@ -765,15 +792,19 @@ body {
   justify-content: center;
 
   background: rgba(0, 200, 83, 0.1);
+
   border: 1px solid rgba(0, 200, 83, 0.2);
+
   border-radius: 9px;
 
   color: #00c853;
+
   font-size: 17px;
 }
 
 .ai_panel_title strong {
   color: #ffffff;
+
   font-size: 15px;
   font-weight: 600;
 }
@@ -782,6 +813,7 @@ body {
   margin: 4px 0 0;
 
   color: #69736d;
+
   font-size: 11px;
 }
 
@@ -789,10 +821,16 @@ body {
   width: 32px;
   height: 32px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   background: transparent;
+
   border: none;
 
   color: #69736d;
+
   font-size: 25px;
   line-height: 1;
 
@@ -803,49 +841,177 @@ body {
   color: #ffffff;
 }
 
-/* CURRENT STOCK */
+
+/* =========================
+   CURRENT STOCK
+========================= */
 
 .ai_current_stock {
   display: flex;
   align-items: center;
   justify-content: space-between;
 
+  flex-shrink: 0;
+
   margin: 18px 20px 0;
+
   padding: 12px 14px;
 
   background: #101613;
+
   border: 1px solid #1d2821;
+
   border-radius: 9px;
 }
 
 .ai_current_stock span {
   color: #69736d;
+
   font-size: 10px;
   font-weight: 600;
+
   letter-spacing: 0.8px;
 }
 
 .ai_current_stock strong {
   color: #00c853;
+
   font-size: 14px;
 }
 
-/* CHAT */
+
+/* =========================
+   CHAT AREA
+========================= */
 
 .ai_expert_panel .ai_chat_area {
   flex: 1;
-  min-height: 0;
 
-  overflow-y: auto;
+  min-height: 0;
+  min-width: 0;
 
   padding: 22px 20px;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+
+  scrollbar-width: thin;
+  scrollbar-color: #26342b transparent;
 }
+
+
+/* Chrome / Edge scrollbar */
+
+.ai_expert_panel .ai_chat_area::-webkit-scrollbar {
+  width: 6px;
+}
+
+.ai_expert_panel .ai_chat_area::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.ai_expert_panel .ai_chat_area::-webkit-scrollbar-thumb {
+  background: #26342b;
+
+  border-radius: 10px;
+}
+
+.ai_expert_panel .ai_chat_area::-webkit-scrollbar-thumb:hover {
+  background: #35483c;
+}
+
+
+/* =========================
+   ALL MESSAGES
+========================= */
 
 .ai_expert_panel .ai_message {
   display: flex;
+
   align-items: flex-start;
+
+  width: 100%;
+  max-width: 100%;
+
+  min-width: 0;
+
   gap: 10px;
+
+  margin-top: 14px;
+
+  box-sizing: border-box;
 }
+
+
+/* =========================
+   AI MESSAGE — LEFT
+========================= */
+
+.ai_expert_panel .ai_message_bot {
+  justify-content: flex-start;
+
+  width: calc(100% - 20px);
+
+  margin-right: 20px;
+}
+
+.ai_expert_panel .ai_message_bot .ai_message_content {
+  flex: 0 1 auto;
+
+  min-width: 0;
+
+  max-width: calc(100% - 42px);
+
+  padding: 12px 14px;
+
+  background: #111814;
+
+  border: 1px solid #26342b;
+
+  border-radius: 3px 12px 12px 12px;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   USER MESSAGE — RIGHT
+========================= */
+
+.ai_expert_panel .ai_message_user {
+  justify-content: flex-end;
+
+  width: calc(100% - 20px);
+
+  margin-left: 20px;
+}
+
+.ai_expert_panel .ai_message_user .ai_message_content {
+  flex: 0 1 auto;
+
+  min-width: 0;
+
+  max-width: 100%;
+
+  padding: 11px 13px;
+
+  background: #16271d;
+
+  border: 1px solid rgba(0, 200, 83, 0.22);
+
+  border-radius: 12px 12px 3px 12px;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+}
+
+
+/* =========================
+   AI AVATAR
+========================= */
 
 .ai_expert_panel .ai_avatar {
   flex-shrink: 0;
@@ -858,41 +1024,242 @@ body {
   justify-content: center;
 
   background: rgba(0, 200, 83, 0.1);
+
   border: 1px solid rgba(0, 200, 83, 0.2);
+
   border-radius: 8px;
 
   color: #00c853;
+
   font-size: 10px;
   font-weight: 700;
 }
 
-.ai_expert_panel .ai_message_content {
-  flex: 1;
 
-  background: #141c17;
-  border: 1px solid #1d2821;
-  border-radius: 11px;
+/* =========================
+   MESSAGE NAME
+========================= */
 
-  padding: 12px 14px;
-}
+.ai_expert_panel .ai_message_content > strong {
+  display: block;
 
-.ai_expert_panel .ai_message_content strong {
   color: #ffffff;
-  font-size: 12px;
+
+  font-size: 11px;
+  font-weight: 600;
 }
 
-.ai_expert_panel .ai_message_content p {
-  margin: 7px 0 0;
-
-  color: #8b938d;
-  font-size: 12px;
-  line-height: 1.6;
+.ai_expert_panel
+.ai_message_user
+.ai_message_content
+> strong {
+  color: #00c853;
 }
 
-/* SUGGESTIONS */
+
+/* =========================
+   USER MESSAGE TEXT
+========================= */
+
+.ai_expert_panel
+.ai_message_user
+.ai_message_content
+> p {
+  margin: 6px 0 0;
+
+  color: #d8e0db;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+
+  overflow-wrap: anywhere;
+
+  word-break: break-word;
+}
+
+
+/* =========================
+   AI MARKDOWN RESPONSE
+========================= */
+
+.ai_expert_panel .markdown_body {
+  margin-top: 6px;
+
+  min-width: 0;
+  max-width: 100%;
+
+  color: #aeb8b1;
+
+  font-size: 12px;
+
+  line-height: 1.55;
+
+  overflow-wrap: anywhere;
+
+  word-break: break-word;
+}
+
+
+/* =========================
+   AI PARAGRAPHS
+========================= */
+
+.ai_expert_panel .markdown_body p {
+  margin: 0 0 8px;
+
+  color: #aeb8b1;
+
+  font-size: 12px;
+
+  line-height: 1.55;
+}
+
+.ai_expert_panel .markdown_body p:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================
+   AI BOLD TEXT
+========================= */
+
+.ai_expert_panel .markdown_body strong {
+  color: #f1f5f2;
+
+  font-size: 12px;
+
+  font-weight: 600;
+}
+
+
+/* =========================
+   AI HEADINGS
+========================= */
+
+.ai_expert_panel .markdown_body h1,
+.ai_expert_panel .markdown_body h2,
+.ai_expert_panel .markdown_body h3 {
+  margin: 9px 0 5px;
+
+  color: #ffffff;
+
+  font-size: 12px;
+
+  font-weight: 600;
+
+  line-height: 1.4;
+}
+
+.ai_expert_panel .markdown_body h1:first-child,
+.ai_expert_panel .markdown_body h2:first-child,
+.ai_expert_panel .markdown_body h3:first-child {
+  margin-top: 0;
+}
+
+
+/* =========================
+   AI LISTS
+========================= */
+
+.ai_expert_panel .markdown_body ul,
+.ai_expert_panel .markdown_body ol {
+  margin: 6px 0 8px;
+
+  padding-left: 17px;
+
+  color: #aeb8b1;
+
+  font-size: 12px;
+
+  line-height: 1.55;
+}
+
+.ai_expert_panel .markdown_body li {
+  margin-bottom: 4px;
+
+  overflow-wrap: anywhere;
+}
+
+.ai_expert_panel .markdown_body li:last-child {
+  margin-bottom: 0;
+}
+
+
+/* =========================
+   AI INLINE CODE
+========================= */
+
+.ai_expert_panel .markdown_body code {
+  background: #080c0a;
+
+  border: 1px solid #26342b;
+
+  border-radius: 4px;
+
+  padding: 2px 4px;
+
+  color: #00c853;
+
+  font-size: 11px;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* =========================
+   AI CODE BLOCK
+========================= */
+
+.ai_expert_panel .markdown_body pre {
+  max-width: 100%;
+
+  margin: 8px 0;
+
+  padding: 9px;
+
+  background: #080c0a;
+
+  border: 1px solid #26342b;
+
+  border-radius: 7px;
+
+  overflow: hidden;
+
+  white-space: pre-wrap;
+
+  overflow-wrap: anywhere;
+
+  word-break: break-word;
+}
+
+.ai_expert_panel .markdown_body pre code {
+  background: transparent;
+
+  border: none;
+
+  padding: 0;
+
+  color: #aeb8b1;
+
+  font-size: 11px;
+
+  white-space: pre-wrap;
+
+  overflow-wrap: anywhere;
+
+  word-break: break-word;
+}
+
+
+/* =========================
+   SUGGESTIONS
+========================= */
 
 .ai_expert_panel .ai_suggestions {
   margin: 24px 0 0 42px;
+
+  max-width: calc(100% - 42px);
 }
 
 .ai_expert_panel .ai_suggestions > span {
@@ -901,55 +1268,93 @@ body {
   margin-bottom: 9px;
 
   color: #69736d;
+
   font-size: 10px;
+
+  font-weight: 500;
 }
 
 .ai_expert_panel .ai_suggestion_list {
   display: flex;
+
   flex-direction: column;
+
   align-items: flex-start;
+
   gap: 7px;
+
+  max-width: 100%;
 }
 
 .ai_expert_panel .ai_suggestion_list button {
+  max-width: 100%;
+
   background: transparent;
+
   border: 1px solid #26342b;
+
   border-radius: 8px;
 
   padding: 8px 10px;
 
   color: #8b938d;
+
   font-size: 11px;
 
   cursor: pointer;
+
   text-align: left;
 
-  transition: all 0.2s ease;
+  overflow-wrap: anywhere;
+
+  word-break: break-word;
+
+  transition:
+    background 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
 }
 
 .ai_expert_panel .ai_suggestion_list button:hover {
   background: #162019;
+
   border-color: #00c853;
+
   color: #00c853;
 }
 
-/* INPUT */
+
+/* =========================
+   INPUT AREA
+========================= */
 
 .ai_expert_panel .ai_input_area {
   display: flex;
+
+  flex-shrink: 0;
+
   gap: 8px;
 
+  min-width: 0;
+
   padding: 15px;
+
+  background: #0d120f;
 
   border-top: 1px solid #1d2821;
 }
 
 .ai_expert_panel .ai_input_area input {
   flex: 1;
+
   min-width: 0;
 
+  width: 100%;
+
   background: #080c0a;
+
   border: 1px solid #26342b;
+
   border-radius: 8px;
 
   padding: 11px 12px;
@@ -957,6 +1362,7 @@ body {
   outline: none;
 
   color: #ffffff;
+
   font-size: 12px;
 }
 
@@ -968,21 +1374,84 @@ body {
   border-color: #00c853;
 }
 
+.ai_expert_panel .ai_input_area input:disabled {
+  opacity: 0.6;
+}
+
 .ai_expert_panel .ai_input_area button {
+  flex-shrink: 0;
+
   background: #00c853;
+
   border: none;
+
   border-radius: 8px;
 
   padding: 0 15px;
 
   color: #061008;
+
   font-size: 12px;
+
   font-weight: 700;
 
   cursor: pointer;
+
+  transition: opacity 0.2s ease;
+}
+
+.ai_expert_panel .ai_input_area button:hover:not(:disabled) {
+  opacity: 0.9;
 }
 
 .ai_expert_panel .ai_input_area button:disabled {
   opacity: 0.35;
+
   cursor: not-allowed;
+}
+
+
+/* =========================
+   MOBILE AI PANEL
+========================= */
+
+@media (max-width: 600px) {
+
+  .ai_expert_panel {
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  .ai_expert_panel .ai_chat_area {
+    padding: 18px 14px;
+  }
+
+  .ai_expert_panel .ai_message_bot {
+    width: calc(100% - 10px);
+
+    margin-right: 10px;
+  }
+
+  .ai_expert_panel .ai_message_user {
+    width: calc(100% - 10px);
+
+    margin-left: 10px;
+  }
+
+  .ai_expert_panel
+  .ai_message_bot
+  .ai_message_content {
+    max-width: calc(100% - 42px);
+  }
+
+  .ai_expert_panel
+  .ai_message_user
+  .ai_message_content {
+    max-width: 100%;
+  }
+
+  .ai_expert_panel .ai_input_area {
+    padding: 12px;
+  }
+
 }
